@@ -7,10 +7,26 @@ import Employee from '../models/Employee.js';
  * @param next
  */
 
-const getAllEmployees = (req, res, next) =>{
-
+const getAllEmployees = (req, res, next) => {
+    Employee.find().then((result) => {
+            res.status(201).json({
+                message: 'Employees fetched successfully!',
+                result,
+            });
+        }
+    ).catch((err) => {
+        res.status(500).json({
+            error: err.message
+        })
+    })
 }
 
+/**
+ * @description - This function is used to add new employee
+ * @param req
+ * @param res
+ * @param next
+ */
 const addEmployee = (req, res, next) => {
     try {
         const {
@@ -50,6 +66,13 @@ const addEmployee = (req, res, next) => {
     }
 }
 
+
+/**
+ * @description - This function is used to update employee
+ * @param req
+ * @param res
+ * @param next
+ */
 const updateEmployee = (req, res, next) => {
     try {
         const {
@@ -88,6 +111,12 @@ const updateEmployee = (req, res, next) => {
     }
 }
 
+/**
+ * @description - This function is used to delete employee
+ * @param req
+ * @param res
+ * @param next
+ */
 const removeEmployee = (req, res, next) => {
 
     const {id} = req.body;
