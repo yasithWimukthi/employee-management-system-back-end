@@ -1,13 +1,14 @@
 import Employee from '../models/Employee.js';
 
 /**
- * @description - This function is used to get all employees
+ * @description - This function is used to get all employees.
+ * It will return all employees in the database.
  * @param req
  * @param res
  * @param next
  */
 
-const getAllEmployees = (req, res, next) => {
+export const getAllEmployees = (req, res, next) => {
     Employee.find().then((result) => {
             res.status(201).json({
                 message: 'Employees fetched successfully!',
@@ -22,12 +23,13 @@ const getAllEmployees = (req, res, next) => {
 }
 
 /**
- * @description - This function is used to add new employee
+ * @description - This function is used to add new employee.
+ * It will create a new employee and save it to the database. It will return the new employee.
  * @param req
  * @param res
  * @param next
  */
-const addEmployee = (req, res, next) => {
+export const addEmployee = (req, res, next) => {
     try {
         const {
             firstName,
@@ -68,12 +70,13 @@ const addEmployee = (req, res, next) => {
 
 
 /**
- * @description - This function is used to update employee
+ * @description - This function is used to update employee.
+ * It will update the employee in the database. It will return the updated employee.
  * @param req
  * @param res
  * @param next
  */
-const updateEmployee = (req, res, next) => {
+export const updateEmployee = (req, res, next) => {
     try {
         const {
             id,
@@ -112,12 +115,13 @@ const updateEmployee = (req, res, next) => {
 }
 
 /**
- * @description - This function is used to delete employee
+ * @description - This function is used to delete employee.
+ * It will delete the employee from the database. IT will return the deleted employee.
  * @param req
  * @param res
  * @param next
  */
-const removeEmployee = (req, res, next) => {
+export const removeEmployee = (req, res, next) => {
 
     const {id} = req.body;
 
