@@ -1,5 +1,16 @@
 import Employee from '../models/Employee.js';
 
+/**
+ * @description - This function is used to get all employees
+ * @param req
+ * @param res
+ * @param next
+ */
+
+const getAllEmployees = (req, res, next) =>{
+
+}
+
 const addEmployee = (req, res, next) => {
     try {
         const {
@@ -32,9 +43,9 @@ const addEmployee = (req, res, next) => {
                 result,
             });
         });
-    }catch (err) {
+    } catch (err) {
         res.status(500).json({
-            error:err.message
+            error: err.message
         })
     }
 }
@@ -70,9 +81,26 @@ const updateEmployee = (req, res, next) => {
             message: 'Employee updated successfully!',
             employee,
         });
-    }catch (err) {
+    } catch (err) {
         res.status(500).json({
-            error:err.message
+            error: err.message
         })
     }
+}
+
+const removeEmployee = (req, res, next) => {
+
+    const {id} = req.body;
+
+    Employee.findOneAndRemove({_id: id}).then((result) => {
+            res.status(201).json({
+                message: 'Employee removed successfully!',
+                result,
+            });
+        }
+    ).catch((err) => {
+        res.status(500).json({
+            error: err.message
+        })
+    })
 }
