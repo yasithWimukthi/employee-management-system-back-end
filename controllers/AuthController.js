@@ -2,6 +2,17 @@ import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
+/**
+ * @description - This function is used to register to the system.
+ * It will create a new user and save it to the database.
+ * It will return a token to the user.
+ * The token will be used to authenticate the user.
+ * The token will expire in 7 days.
+ * @param req
+ * @param res
+ * @param next
+ * @returns jsonwebtoken
+ */
 export const signUp = async (req, res, next) => {
     const {
         name,
@@ -39,7 +50,14 @@ export const signUp = async (req, res, next) => {
     }
 }
 
-
+/**
+ * @description - This function is used to login to the system.
+ * It will check if the user exists in the database.
+ * If the user exists, it will return a token to the user. The token will be used to authenticate the user. The token will expire in 7 days.
+ * @param req
+ * @param res
+ * @returns jsonwebtoken
+ */
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body
