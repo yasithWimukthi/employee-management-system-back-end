@@ -1,12 +1,12 @@
 import express from "express";
-import {login, signUp} from "../controllers/AuthController";
-import {userSignupValidator} from "../validators";
+import {login, signUp} from "../controllers/AuthController.js";
+import {userSignupValidator} from "../validators/index.js";
 
 const router = express.Router();
 
 router.post(
-    userSignupValidator,
     "/signup",
+    userSignupValidator,
     signUp);
 
 router.post(

@@ -1,9 +1,9 @@
-const {check, validationResult} = require('express-validator');
+import {check, validationResult} from 'express-validator';
 
 /**
  * validate signup form data
  */
-exports.userSignupValidator = [
+export const userSignupValidator = [
     check('name', 'Name is required').not().isEmpty(),
     check('email', 'Please include a valid email')
         .matches(/.+\@.+\..+/)
@@ -44,7 +44,7 @@ exports.userSignupValidator = [
  * validate add employee and update employee form data
  * @type {ValidationChain[]}
  */
-exports.employeeValidator = [
+export const employeeValidator = [
     check('firstName', 'First name is required').not().isEmpty(),
     check('lastName', 'Last name is required').not().isEmpty(),
     check('birthDate', 'Birth date is required').not().isEmpty(),

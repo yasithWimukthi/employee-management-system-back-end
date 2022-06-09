@@ -1,17 +1,18 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const morgan = require('morgan');
-const fs = require("fs");
-const cors = require('cors')
+import express from "express";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import mongoose from "mongoose";
+import fs from "fs";
+import cors from "cors"
+import morgan from "morgan";
 
-const authRoutes = require('./api/routes/AuthRoutes');
-
+import authRoutes from "./routes/AuthRoutes.js";
+import employeeRoutes from "./routes/EmployeeRoutes.js";
 
 dotenv.config();
 const PORT = process.env.PORT;
 const server = express();
-server.use(express.json());
+server.use(bodyParser.json());
 server.use(express.urlencoded({extended: false}));
 server.use(cors())
 
@@ -23,6 +24,7 @@ server.use(morgan('common', {
 
 
 server.use('/api/auth', authRoutes);
+server.use('/api/employee', employeeRoutes);
 
 
 mongoose.connect(process.env.DB_CONNECTION_URL)
