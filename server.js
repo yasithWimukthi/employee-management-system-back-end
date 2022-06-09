@@ -5,9 +5,8 @@ const morgan = require('morgan');
 const fs = require("fs");
 const cors = require('cors')
 
-// const movieRoutes = require('./api/routes/movie_routes');
-// const theaterRoutes = require('./api/routes/theater_routes');
-// const theaterDetailsRoutes = require('./api/routes/TheaterDetailsRoutes');
+const authRoutes = require('./api/routes/AuthRoutes');
+
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -23,9 +22,8 @@ server.use(morgan('common', {
 
 
 
-// server.use('/api/movies', movieRoutes);
-// server.use('/api/theaters', theaterRoutes);
-// server.use('/api/theaterDetails', theaterDetailsRoutes);
+server.use('/api/auth', authRoutes);
+
 
 mongoose.connect(process.env.DB_CONNECTION_URL)
     .then((result) => {
