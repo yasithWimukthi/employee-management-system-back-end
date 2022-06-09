@@ -27,10 +27,7 @@ server.use(morgan('common', {
 // server.use('/api/theaters', theaterRoutes);
 // server.use('/api/theaterDetails', theaterDetailsRoutes);
 
-
-const DB_CONNECTION_URL = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.gtmij.mongodb.net/movie-theater`;
-
-mongoose.connect(DB_CONNECTION_URL)
+mongoose.connect(process.env.DB_CONNECTION_URL)
     .then((result) => {
         console.log('connected to DB');
         server.listen(PORT, () => {
