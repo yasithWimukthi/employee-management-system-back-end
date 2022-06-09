@@ -39,4 +39,40 @@ const addEmployee = (req, res, next) => {
     }
 }
 
-con
+const updateEmployee = (req, res, next) => {
+    try {
+        const {
+            id,
+            firstName,
+            lastName,
+            birthDate,
+            address,
+            contactNumber,
+            department,
+            designation,
+            employeeId,
+            nic,
+        } = req.body;
+
+        const employee = Employee.findOneAndUpdate({_id: id}, {
+            firstName,
+            lastName,
+            birthDate,
+            address,
+            contactNumber,
+            department,
+            designation,
+            employeeId,
+            nic
+        })
+
+        res.status(201).json({
+            message: 'Employee updated successfully!',
+            employee,
+        });
+    }catch (err) {
+        res.status(500).json({
+            error:err.message
+        })
+    }
+}
