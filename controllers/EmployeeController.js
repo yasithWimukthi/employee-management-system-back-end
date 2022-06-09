@@ -8,7 +8,7 @@ import Employee from '../models/Employee.js';
  * @param next
  */
 
-const getAllEmployees = (req, res, next) => {
+export const getAllEmployees = (req, res, next) => {
     Employee.find().then((result) => {
             res.status(201).json({
                 message: 'Employees fetched successfully!',
@@ -29,7 +29,7 @@ const getAllEmployees = (req, res, next) => {
  * @param res
  * @param next
  */
-const addEmployee = (req, res, next) => {
+export const addEmployee = (req, res, next) => {
     try {
         const {
             firstName,
@@ -76,7 +76,7 @@ const addEmployee = (req, res, next) => {
  * @param res
  * @param next
  */
-const updateEmployee = (req, res, next) => {
+export const updateEmployee = (req, res, next) => {
     try {
         const {
             id,
@@ -121,7 +121,7 @@ const updateEmployee = (req, res, next) => {
  * @param res
  * @param next
  */
-const removeEmployee = (req, res, next) => {
+export const removeEmployee = (req, res, next) => {
 
     const {id} = req.body;
 
