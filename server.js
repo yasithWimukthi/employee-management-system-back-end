@@ -8,6 +8,7 @@ import morgan from "morgan";
 
 import authRoutes from "./routes/AuthRoutes.js";
 import employeeRoutes from "./routes/EmployeeRoutes.js";
+import adminRoutes from "./routes/AdminRoutes.js";
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -21,11 +22,9 @@ server.use(morgan('common', {
     stream: fs.createWriteStream('./access.log', {flags: 'a'})
 }));
 
-
-
 server.use('/api/auth', authRoutes);
 server.use('/api/employee', employeeRoutes);
-
+server.use('/api/admin', adminRoutes);
 
 mongoose.connect(process.env.DB_CONNECTION_URL)
     .then((result) => {
