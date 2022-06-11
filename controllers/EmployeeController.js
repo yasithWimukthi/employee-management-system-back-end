@@ -1,4 +1,4 @@
-import Employee from '../models/Employee.js';
+import Employee from "../models/Employee.js";
 
 /**
  * @description - This function is used to get all employees.
@@ -9,18 +9,19 @@ import Employee from '../models/Employee.js';
  */
 
 export const getAllEmployees = (req, res, next) => {
-    Employee.find().then((result) => {
+    Employee.find()
+        .then((result) => {
             res.status(201).json({
-                message: 'Employees fetched successfully!',
+                message: "Employees fetched successfully!",
                 result,
             });
-        }
-    ).catch((err) => {
-        res.status(500).json({
-            error: err.message
         })
-    })
-}
+        .catch((err) => {
+            res.status(500).json({
+                error: err.message,
+            });
+        });
+};
 
 /**
  * @description - This function is used to add new employee.
@@ -57,17 +58,16 @@ export const addEmployee = (req, res, next) => {
 
         employee.save().then((result) => {
             res.status(201).json({
-                message: 'Employee added successfully!',
+                message: "Employee added successfully!",
                 result,
             });
         });
     } catch (err) {
         res.status(500).json({
-            error: err.message
-        })
+            error: err.message,
+        });
     }
-}
-
+};
 
 /**
  * @description - This function is used to update employee.
@@ -76,43 +76,48 @@ export const addEmployee = (req, res, next) => {
  * @param res
  * @param next
  */
-export const updateEmployee = (req, res, next) => {
+export const updateEmployee = async (req, res, next) => {
     try {
         const {
             id,
             firstName,
             lastName,
-            birthDate,
             address,
             contactNumber,
             department,
             designation,
             employeeId,
             nic,
+            birthDate
         } = req.body;
 
-        const employee = Employee.findOneAndUpdate({_id: id}, {
-            firstName,
-            lastName,
-            birthDate,
-            address,
-            contactNumber,
-            department,
-            designation,
-            employeeId,
-            nic
-        })
+
+
+        const employee = await Employee.findOneAndUpdate(
+            { _id: id },
+            {
+                firstName,
+                lastName,
+                birthDate,
+                address,
+                contactNumber,
+                department,
+                designation,
+                employeeId,
+                nic,
+            }
+        );
 
         res.status(201).json({
-            message: 'Employee updated successfully!',
+            message: "Employee updated successfully!",
             employee,
         });
     } catch (err) {
         res.status(500).json({
-            error: err.message
-        })
+            error: err.message,
+        });
     }
-}
+};
 
 /**
  * @description - This function is used to delete employee.
@@ -122,18 +127,18 @@ export const updateEmployee = (req, res, next) => {
  * @param next
  */
 export const removeEmployee = (req, res, next) => {
+    const { id } = req.body;
 
-    const {id} = req.body;
-
-    Employee.findOneAndRemove({_id: id}).then((result) => {
+    Employee.findOneAndRemove({ _id: id })
+        .then((result) => {
             res.status(201).json({
-                message: 'Employee removed successfully!',
+                message: "Employee removed successfully!",
                 result,
             });
-        }
-    ).catch((err) => {
-        res.status(500).json({
-            error: err.message
         })
-    })
-}
+        .catch((err) => {
+            res.status(500).json({
+                error: err.message,
+            });
+        });
+};
