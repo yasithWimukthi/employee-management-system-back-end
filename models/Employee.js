@@ -33,8 +33,9 @@ const employeeSchema = new Schema({
         }
     ],
     department:{
-        type: ObjectId,
-        ref: 'Department',
+        type: String,
+        trim: true,
+        required: true
     },
     designation:{
         type: String,
