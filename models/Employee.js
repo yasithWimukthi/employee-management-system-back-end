@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const {Schema, ObjectId} = mongoose;
+const {Schema} = mongoose;
 
 const employeeSchema = new Schema({
     firstName:{
@@ -45,12 +45,14 @@ const employeeSchema = new Schema({
     employeeId:{
         type: String,
         trim: true,
-        required: true
+        required: true,
+        unique: true
     },
     nic:{
         type: String,
         trim: true,
-        required: true
+        required: true,
+        unique: true
     }
 },{timestamps:true});
 

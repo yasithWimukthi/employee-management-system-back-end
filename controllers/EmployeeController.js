@@ -129,6 +129,12 @@ export const updateEmployee = async (req, res, next) => {
 export const removeEmployee = (req, res, next) => {
     const { id } = req.body;
 
+    if (!id) {
+        res.status(400).json({
+            error: "Please provide an id!",
+        });
+    }
+
     Employee.findOneAndRemove({ _id: id })
         .then((result) => {
             res.status(201).json({

@@ -15,6 +15,12 @@ export const addDepartment = (req, res, next) => {
         designation,
     } = req.body;
 
+    if (!name || !designation) {
+        return res.status(400).json({
+            error: 'Please provide all required fields',
+        });
+    }
+
     const department = new Department({
         name,
         designation,
