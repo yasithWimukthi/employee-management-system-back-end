@@ -34,7 +34,7 @@ export const userSignupValidator = [
         const result = validationResult(req).formatWith(errorFormatter);
         if (!result.isEmpty()) {
             const firstError = result.array()[0];
-            return res.status(401).json({error: firstError});
+            return res.status(400).json({error: firstError});
         }
         next();
     },
@@ -62,7 +62,7 @@ export const employeeValidator = [
         const result = validationResult(req).formatWith(errorFormatter);
         if (!result.isEmpty()) {
             const firstError = result.array()[0];
-            return res.status(401).json({error: firstError});
+            return res.status(400).json({error: firstError});
         }
         next();
     }
